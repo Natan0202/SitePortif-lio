@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=Josefin+Sans:wght@300&family=Josefin+Slab:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=Josefin+Slab:wght@500&display=swap');
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
+/*OBS: Está importando a fonte em CSS para não colocar em todos os htmls, pois importando aqui
+ele serve para todo o arquivo*/
+
+/*OBS: Em relação ao faveicon.io (icon) na aba do navegador, ele precisa estar no mesmo local dos 
+    htmls
+*/
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    
+}
+/*DEFINIÇÃO DE FONTES
+    FOI CRIADA UM "VARIÁVEL" PARA DEFINIR AS FONTES
+*/
+:root{
+    --font-primary:  "Baloo Da 2", serif;
+    --font-securdary: "Josefin Slab", serif;
+    --font-action: 'Josefin Slab', serif;
+}
+.hamburguer{
+    /*background-color: rebeccapurple;*/
+    width: 2rem;
+    height: 2rem;
+    position: fixed; /*colocando ele fixo e por de trás da imagem*/
+    z-index: 100; /*colocando ele como o primeiro elemento*/
+    right: 2rem;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+.show-menu .hamburguer{
+    right: 15rem;
+}
+/*fazendo com que as barras virem um X*/
+
+.line{
+    width: 100%;
+    background-color: #fff;
+    height: .1rem;
+    box-shadow: 0.1rem 0.1rem 1px #000;
+    transition: transform 1s;
+}
+.show-menu #line1{
+    transform: rotate(45deg) translate(.3rem, .45rem);
+}
+.show-menu #line2{
+    opacity: 0;
+    visibility: hidden;
+}
+.show-menu #line3{
+    transform: rotate(-45deg) translate(.3rem, -.45rem);
+}
+/*até aqui*/
+.hamburguer span{
+    position: absolute;
+    left: 3rem;
+    height: 2rem;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: skyblue;
+    color: white;
+    font-family: var(--font-action);
+    opacity: 0;
+}
+.hamburguer span::before{
+    content: "";
+    position: absolute;
+    border-right: .5rem solid skyblue;
+    border-top: .5rem solid transparent;
+    border-left: .5rem solid transparent;
+    border-bottom: .5rem solid transparent;
+    left: -1rem;
+}
+.show-menu .hamburguer:hover span{
+    opacity: 1;
+}
+body{
+    font-size: 16px; /*Referência para toda a página*/
+}
+/*    font-family: 'Josefin Slab', serif;
+      font-family: 'Baloo Da 2', cursive;
+*/
+header{
+    width: 100%;
+    height: 100vh; /*OBS: O vh ele serve para capturar de como a tela está
+        caso esteja no celular, pc (tela pequena, grande)
+    */
+    overflow: hidden; /*desabilita o cabeçalho de passar a tela*/
+    position: relative; /*REF.: Class Banner*/
+}
+
+
+/*Aqui nesse ele pede para a div wrapper se encaixe no header, sendo que a tag
+IMG não obedece
+*/
+.img-wrapper{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(44, 44, 44); /**/
+}
+
+/*Formatando a imagem, pois ela está passando do header*/
+.img-wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*A imagem cobre a DIV, ou seja, se diminui ela permanece normal
+    sem perder a proporção*/
+    opacity: 0.5; /*Aqui ele diminui a opacidade, porém sem um fundo preto, ela fica
+    totalmente em branco*/
+    animation: zoom 25s;
+}
+/*Então aqui, ele ordena que ela obedeça */
+
+
+@keyframes zoom /*+ nome*/{
+    0%{ /*inicio*/
+        transform: scale(1.3); /*dando zoom*/
+    }
+    100%{
+        transform: scale(1); /*dando zoom*/
+    }
+}
+/***/
+.banner{
+    position: absolute; /*Para o banner ficar absolute precisa que o header fique em relative*/
+    top: 30%;
+    left: 15%;
+}
+
+.banner h1{
+    color: white;
+    font-size: 3.5rem; /*PX fica no mesmo tamanho em tudo, usar o em ou rem*/
+    /*EM - Mesmo tamanho tamanho de fonte do elemento banner, ele herda*/
+    /*REM - Pega referência com o elemento principal da página (16px)
+        nesse caso 3.5 x 16px
+
+    */
+    font-family: var(--font-primary);
+    font-weight: 200; /*Peso da fonte, a expressura, quanto maior menor ela será*/
+    text-shadow: .3rem .4rem 2px rgba(0, 0, 0, .4); /*sombra*/
+    line-height: 3rem; /*tamanho da linha*/
+    margin-bottom: 2rem /*espaço da margin*/;
+    animation: moveBanner 1s 0.9s forwards;
+}
+
+.banner p{
+    font-family: var(--font-securdary);
+    color: white;
+    font-size: 2rem;
+    text-shadow: .2rem .2rem rgba(0, 0, 0, .4); /*sombra*/
+    margin-bottom: 2rem /*espaço da margin*/;
+    animation: moveBanner 1s 0.8s forwards;
+
+
+}
+.banner button{
+    font-family: var(--font-action);
+    color: rgb(255, 255, 255);
+    text-transform: uppercase; /*Colocando em maiúsculo*/
+    letter-spacing: .1rem; /*Espaço entre as letras*/
+    /*GRADIENTES*/
+    background: #b92b27;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /*GRADIENTES*/
+    padding: 1rem 3rem;/*margin interna*/
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: moveBanner 1s 0.7s forwards; /*0.5s é o atraso*/
+
+}
+.banner button:hover{ /*pseudoclasse*/
+    opacity: 0.8;
+    color: black;
+}
+
+/*************************ATÉ AQUI É O CABEÇALHO****************************************/
+@keyframes moveBanner{
+    0%{
+        transform: translateY(10rem) rotateY(-30deg);
+    }
+    100%{
+        transform: translateY(0) rotateY(0);
+    }
+}
+
+.sidebar{
+    width: 20rem;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    right: -20rem;
+    transition: all .3s;
+}
+.show-menu .sidebar{
+    right: 0;
+}
+.menu{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-item{
+    text-align: center;   
+    margin-bottom: .5rem;
+}
+.menu-link{
+    font-family: var(--font-action);
+    font-size: 2rem;
+    color: rgb(44, 44, 44);
+}
+.menu-link:hover{
+    color: silver;
+    transition: color 1s;
+}
+.social-media{
+    position: absolute; /*estava em cima e jogou ele para baixo*/
+    bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.social-media i{
+    font-size: 2.5rem;
+    color: #555;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.social-media i:hover{
+    background-color: rgb(128, 127, 127);
+    border-radius: 10px;
+}
+
